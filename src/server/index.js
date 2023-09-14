@@ -3,87 +3,132 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const Course = require("./models/Course");
+const Quiz = require("./models/Quiz");
+const Student = require("./models/Student");
+const Teacher = require("./models/Teacher");
+
 require("dotenv").config();
 
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
-app.post("/add-customer", async (req, res) => {
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Started");
+  });
+
+app.post("/login", async (req, res) => {
+  console.log(req.body);
   try {
-    const { cust_name, email, password, Reference, admin_name, phnum } =
-      req.body;
-
-    const randomDigits = Math.floor(100000 + Math.random() * 900000);
-    // const firstThreeLetters = cust_name.slice(0, 3).toUpperCase();
-    const firstThreeLetters = "PA";
-    const cust_id = `${firstThreeLetters}${randomDigits}`;
-
-    const randomDigits_ = Math.floor(100000 + Math.random() * 900000);
-    const firstThreeLetters_ = cust_name.slice(0, 3).toUpperCase();
-    const reference_id = `${firstThreeLetters_}${randomDigits_}`;
-
-    console.log(
-      "form details",
-      cust_name,
-      email,
-      password,
-      Reference,
-      admin_name,
-      phnum
-    );
-
-    // Check if the customer with the same email already exists
-    const existingCustomerEmail = await Customer.findOne({ email });
-    if (existingCustomerEmail) {
-      return res
-        .status(400)
-        .json({ error: "A customer with the same email already exists" });
+    let { email, password } = req.body;
+    console.log(req.body);
+    let result = await Student.findOne({ email: email, password: password });
+    console.log(result);
+    if (result) {
+      console.log("Hi");
+      return res.json(result);
     }
-
-    const existingCustomerPhnum = await Customer.findOne({ phnum });
-    if (existingCustomerPhnum) {
-      return res
-        .status(400)
-        .json({ error: "A customer with the Phone Number already exists" });
+    result = await Teacher.findOne({ email: email, password: password });
+    console.log(result);
+    if (result) {
+      return res.json(result);
     }
-
-    let referringCustomer = null;
-    let referred_by = null;
-
-    // Check if the referred_by code is provided
-    if (Reference) {
-      // Find the referring customer based on the referred_by code
-      referringCustomer = await Customer.findOne({ reference_id: Reference });
-      referred_by = referringCustomer["reference_id"];
-      console.log("referring customers is ", referringCustomer["reference_id"]);
-      if (!referringCustomer) {
-        return res.status(400).json({ error: "Referring customer not found" });
-      }
-    }
-
-    // Create a new customer instance
-    const newCustomer = new Customer({
-      cust_name,
-      email,
-      cust_id,
-      password,
-      reference_id,
-      phnum,
-      referred_by,
-    });
-
-    // Save the new customer to the database
-    await newCustomer.save();
-    res.status(201).json(newCustomer); // Respond with the newly created customer
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while adding the customer" });
+    return res.status(401).json({ error: "Invalid Credentials" });
+  } catch {
+    res.status(404).json({ error: "Invalid Credentials" });
   }
 });
 
-app.listen(3003, () => {
+app.post("/new_course/:name", async (req, res) => {
+  try {
+    let name = req.params.name;
+    let { subject } = req.body;
+    let c = new Course({ subject: subject, teacher: name });
+    console.log(c);
+    let teacher = await Teacher.findOne({ name: name });
+    teacher.subjects.push(subject);
+    teacher.save();
+    c.save();
+  } catch {
+    res.json({ error: "Something went wrong please try again" });
+  }
+});
+
+app.post("/course", async (req, res) => {
+  let { subject, teacher } = req.body;
+  console.log(req.body);
+  let response = await Course.findOne({ subject: subject, teacher: teacher });
+  console.log(response);
+  return res.status(200).json(response);
+});
+
+app.get("/teacher/:id", async (req, res) => {
+  let response = await Teacher.findById(req.params.id);
+  res.json(response);
+});
+
+app.post("/new-course/:id", async (req, res) => {
+  try {
+    let id = req.params.id;
+    let { name } = req.body;
+    let course = await Course.findById(id);
+    course.chapters.push({ name: name });
+    course.save();
+    res.json({ success: "added Chapter" });
+  } catch {
+    res.json({ error: "Something went wrong, please try again" });
+  }
+});
+
+app.post("/new-subtopic/:id", async (req, res) => {
+  try {
+    let id = req.params.id;
+    let { name, chapNo } = req.body;
+    let course = await Course.findById(id);
+    course.chapters[chapNo].subtopics.push({ name: name });
+    course.save();
+    res.json({ success: "added Subtopic" });
+  } catch {
+    res.json({ error: "Something went wrong, please try again" });
+  }
+});
+
+app.post("/subtopic/:id", async (req, res) => {
+  try {
+    let body = req.body;
+    let course = await Course.findById(req.params.id);
+    console.log(course);
+    course.chapters[body.chapNo].subtopics[body.subTopicNo].video =
+      body.subTopicData.video;
+    course.chapters[body.chapNo].subtopics[body.subTopicNo].pdf =
+      body.subTopicData.pdf;
+    course.chapters[body.chapNo].subtopics[body.subTopicNo].material =
+      body.subTopicData.materials;
+    course.save();
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+app.get("/:subject", async (req, res) => {
+  try {
+    const courses = await Course.find(
+      { subject: req.params.subject },
+      { _id: 0, teacher: 1 }
+    );
+    res.json(courses);
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+app.listen(3004, () => {
   console.log("Started");
 });
