@@ -117,6 +117,18 @@ app.post("/subtopic/:id", async (req, res) => {
   }
 });
 
+app.get("/:subject", async (req, res) => {
+  try {
+    const courses = await Course.find(
+      { subject: req.params.subject },
+      { _id: 0, teacher: 1 }
+    );
+    res.json(courses);
+  } catch (e) {
+    console.error(e);
+  }
+});
+
 app.listen(3004, () => {
   console.log("Started");
 });

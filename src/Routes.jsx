@@ -10,6 +10,7 @@ import Teacher from "./pages/roles/Teacher";
 import EditCourse from "./pages/roles/Teacher/editCourse";
 
 const ProjectRoutes = () => {
+  const subjects = ["DSA", "Java", "ADS", "Web Programming"];
   return (
     <React.Suspense fallback={<>Loading...</>}>
       <Router>
@@ -22,12 +23,9 @@ const ProjectRoutes = () => {
                 <div className="main-content">
                   <SidePanel />
                   <div className="subject-cards">
-                    <SubjectCard />
-                    <SubjectCard />
-                    <SubjectCard />
-                    <SubjectCard />
-                    <SubjectCard />
-                    {/* Add more SubjectCard components as needed */}
+                    {subjects.map((subject) => {
+                      return <SubjectCard subjectName={subject} />;
+                    })}
                   </div>
                 </div>
               </>

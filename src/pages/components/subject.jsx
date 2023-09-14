@@ -1,35 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./subject.scss";
+import { useNavigate } from "react-router-dom";
 
-function SubjectCard() {
+function SubjectCard({ subjectName }) {
   const [selectedTeacher, setSelectedTeacher] = useState("");
+  const baseUrl = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
+  const [teacherOptions, setTeacherOptions] = useState([]);
 
-  const teacherOptions = ["Teacher 1", "Teacher 2", "Teacher 3", "Teacher 4", "Teacher 5"];
+  useEffect(() => {
+    const getTeacherNames = async () => {
+      let response = await fetch(`${baseUrl}/${subjectName}`)
+        .then((data) => data.json())
+        .then((data) => data);
+      console.log(response);
+      setTeacherOptions(response);
+    };
+    getTeacherNames();
+  });
 
   const handleTeacherChange = (e) => {
     setSelectedTeacher(e.target.value);
-
     // Route to the selected teacher's course immediately
     // For example: history.push(`/courses/${e.target.value}`);
   };
 
   return (
     <div className="subject-card">
-      <h2 className="subject-name">Subject Name</h2>
+      <h2 className="subject-name">{subjectName}</h2>
       <div className="dropdown-container">
-        <select
-          id="teacherSelect"
-          className="teacher-dropdown"
-          value={selectedTeacher}
-          onChange={handleTeacherChange}
-          size={3} // Display only 3 options before using a scrollbar
-        >
-          {teacherOptions.map((teacher, index) => (
-            <option key={index} value={teacher}>
-              {teacher}
-            </option>
-          ))}
-        </select>
+        {teacherOptions.length > 0 ? (
+          <select
+            id="teacherSelect"
+            className="teacher-dropdown"
+            value={selectedTeacher}
+            onChange={handleTeacherChange}
+            size={3} // Display only 3 options before using a scrollbar
+          >
+            {teacherOptions.map((teacher, index) => (
+              <option
+                key={index}
+                value={teacher.teacher}
+                onClick={() => {
+                  navigate(`/course/${subjectName}_${teacher.teacher}`);
+                }}
+              >
+                {teacher.teacher}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <div className="teacher-dropdown">No Teachers Available</div>
+        )}
       </div>
     </div>
   );
