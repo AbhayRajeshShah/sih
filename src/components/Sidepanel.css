@@ -1,0 +1,45 @@
+/* Side Panel Container */
+.side-panel {
+    background-color: white;
+    color: #fff;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    position: fixed;
+    top: 90px;
+    left: 0;
+    bottom: 0;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  /* Logo */
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: black;
+  }
+  
+  /* Menu */
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: black;
+  }
+  
+  .menu ul li {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: black;
+  }
+  
+  .menu ul li.active {
+    background-color: wheat;
+    color: black;
+  }
+
+  
+  

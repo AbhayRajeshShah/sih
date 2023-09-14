@@ -1,0 +1,23 @@
+/* Header Container */
+.header {
+  background-color: #FF9B50;
+  color: #fff;
+  height: 60px; /* Adjust the height as needed */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  
+}
+
+/* Subject Card Container */
+.subject-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+ 
+}
+
+/* Add styles for your SubjectCard content */
