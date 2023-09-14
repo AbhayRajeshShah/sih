@@ -1,0 +1,70 @@
+.sign {
+  display: flex;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  .imgLeft {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    background-color: #fff4ef;
+  }
+  img {
+    height: 30rem;
+  }
+  .rightForm {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5rem;
+    align-items: center;
+    form {
+      font-family: "Poppins";
+      width: 100%;
+      .head {
+        font-weight: 600;
+        color: #434343;
+        font-size: 2rem;
+        margin: 2rem 0;
+      }
+    }
+    a {
+      margin: 0 1rem;
+      text-decoration: underline;
+      color: #e75353;
+    }
+    .line {
+      display: flex;
+      justify-content: space-between;
+      margin: 1.25rem 0;
+      .vertical-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        p {
+          color: #a8a7a7;
+        }
+      }
+      input {
+        width: 20rem;
+        font-size: 0.9rem;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+        &:focus {
+          border: 1px solid #e75353;
+        }
+      }
+      .signBtn {
+        background-color: #e75353;
+        padding: 0.75rem 2rem;
+        border-radius: 0.25rem;
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
