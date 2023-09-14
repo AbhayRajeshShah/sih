@@ -1,0 +1,51 @@
+/* App Container */
+.teacher {
+    font-family: Arial, sans-serif;
+    display: flex;
+    max-width: 2000px; /* Adjust the max width as needed */
+    margin-left: 0px;
+    padding: 100px;
+  }
+  
+ 
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  
+  /* Main Content */
+  main {
+    flex: 2;
+    margin-left: 270px; /* Adjust margin to create space for the side panel */
+    padding: 20px;
+    padding-right: 40px; /* Add some additional padding to prevent content from overlapping with the side panel */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Post Styles (LinkedIn-style) */
+  .post {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+  }
+  
+  .post:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post h2 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .post p {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  

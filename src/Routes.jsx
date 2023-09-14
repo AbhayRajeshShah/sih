@@ -8,6 +8,12 @@ import SignupDefaultPage from "./pages/auth/Signup";
 import SigninDefaultPage from "./pages/auth/Signin";
 import Teacher from "./pages/roles/Teacher";
 import EditCourse from "./pages/roles/Teacher/editCourse";
+import Sidepanel from "./components/Sidepanel";
+import Header from "./components/Header";
+import Subjects from "./components/Subjects";
+import Teacher from "./components/Teacher";
+import Leaderboard from "./components/leaderboard";
+import Score from "./components/score";
 
 const ProjectRoutes = () => {
   const subjects = ["DSA", "Java", "ADS", "Web Programming"];
