@@ -1,0 +1,27 @@
+.login {
+  .imgLeft {
+    img {
+      height: 25rem;
+    }
+  }
+  .rightForm {
+    form {
+      .head {
+        font-size: 3rem;
+        font-weight: 600;
+      }
+      .subDesc {
+        margin: 1rem 0 4rem;
+      }
+      .line {
+        input {
+          width: 25rem;
+          padding: 1rem;
+        }
+        .vertical-form {
+          gap: 0.5rem;
+        }
+      }
+    }
+  }
+}

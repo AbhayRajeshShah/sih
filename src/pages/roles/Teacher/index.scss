@@ -1,0 +1,90 @@
+.subjectCards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 3rem;
+  .subjectCard {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 20px #c3c3c3;
+    .buttons {
+      display: flex;
+      gap: 2rem;
+      button {
+        cursor: pointer;
+        padding: 0.75rem 1.5rem;
+        outline: none;
+        border-radius: 0.5rem;
+        border: 1px solid black;
+      }
+    }
+  }
+  .addNewSub {
+    cursor: pointer;
+    font-size: 3rem;
+    padding: 2rem 1.5rem;
+    &:hover {
+      scale: 0.95;
+      transition: 0.25s;
+    }
+    box-shadow: 0px 0px 20px #c3c3c3;
+    width: fit-content;
+    border-radius: 0.5rem;
+    text-align: center;
+    p {
+      margin: 0;
+    }
+    .desc {
+      font-size: 1rem;
+    }
+  }
+}
+
+.rightDrawer {
+  position: fixed;
+  height: calc(100% - 4rem);
+  right: 0;
+  box-shadow: -4px 0 20px #c3c3c3;
+  top: 0;
+  padding: 3rem 2rem 1rem;
+  z-index: 10;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    p {
+      margin: 0;
+    }
+  }
+  .add {
+    outline: none;
+    border: none;
+    width: 80%;
+    padding: 1rem 2rem;
+    color: white;
+    position: absolute;
+    bottom: 4rem;
+    cursor: pointer;
+    background-color: #ff4848;
+    border-radius: 0.25rem;
+  }
+  .x {
+    cursor: pointer;
+    border-radius: 999px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    background-color: #ff4848;
+    color: white;
+    height: 1.5rem;
+  }
+}
