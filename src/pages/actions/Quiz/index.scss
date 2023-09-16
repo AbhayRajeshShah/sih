@@ -1,0 +1,27 @@
+#form-new {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  .line {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    input {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+    }
+  }
+  .apply {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+}
+button {
+  cursor: pointer;
+  width: fit-content;
+  padding: 1rem 2rem;
+}

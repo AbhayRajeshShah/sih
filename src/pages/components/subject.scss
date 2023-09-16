@@ -1,56 +1,60 @@
 .subject-card {
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.2);
+  border-radius: 8px;
+  width: 300px;
+  margin: 20px auto;
+
+  .subject-name {
+    font-weight: bold;
+    text-align: left; /* Left-align the subject name */
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  .dropdown-container {
+    display: flex;
     background-color: white;
-    color: black;
-    border: 1px solid #ddd;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(50, 50, 50, 0.2);
-    border-radius: 8px;
-    width: 300px;
-    margin: 20px auto;
-  
-    .subject-name {
-      font-weight: bold;
-      text-align: left; /* Left-align the subject name */
-      margin-top: 0;
-      margin-bottom: 15px;
+    flex-direction: column;
+    align-items: center;
+
+    .teacher-dropdown {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow-y: auto;
+      max-height: 150px; /* Increase the maximum height */
+      background-color: #f9f9f9;
+      div {
+        cursor: pointer;
+      }
+      /* Light gray background */
     }
-  
-    .dropdown-container {
-      display: flex;
-      background-color: white;
-      flex-direction: column;
-      align-items: center;
-  
-      .teacher-dropdown {
-        width: 100%;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        overflow-y: auto;
-        max-height: 150px; /* Increase the maximum height */
-        background-color: #f9f9f9; /* Light gray background */
-      }
-  
-      .teacher-dropdown::-webkit-scrollbar {
-        width: 10px; /* Width of the scrollbar */
-      }
-  
-      .teacher-dropdown::-webkit-scrollbar-thumb {
-        background-color: #555; /* Scrollbar thumb color */
-        border-radius: 5px;
-      }
-  
-      .teacher-dropdown option:nth-child(odd) {
-        background-color: white; /* Alternate white background for odd options */
-      }
-  
-      .teacher-dropdown option:nth-child(even) {
-        background-color: #f9f9f9; /* Alternate light gray background for even options */
-      }
-  
-      .teacher-dropdown option {
-        padding: 15px;
-        font-size: 16px; /* Increase the font size for teacher names */
-      }
+
+    .teacher-dropdown::-webkit-scrollbar {
+      width: 10px; /* Width of the scrollbar */
+    }
+
+    .teacher-dropdown::-webkit-scrollbar-thumb {
+      background-color: #555; /* Scrollbar thumb color */
+      border-radius: 5px;
+    }
+
+    .teacher-dropdown div:nth-child(odd) {
+      background-color: white; /* Alternate white background for odd options */
+    }
+
+    .teacher-dropdown div:nth-child(even) {
+      background-color: #f9f9f9; /* Alternate light gray background for even options */
+    }
+
+    .teacher-dropdown div {
+      padding: 15px;
+      font-size: 16px; /* Increase the font size for teacher names */
     }
   }
+}

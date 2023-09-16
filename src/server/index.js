@@ -46,6 +46,48 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/course-content", async (req, res) => {
+  let course = await Course.findOne(req.body);
+  res.json(course);
+});
+
+app.get("/quizzes/:subject", async (req, res) => {
+  try {
+    let quizzes = await Quiz.find(
+      { subject: req.params.subject },
+      { _id: 0, name: 1 }
+    );
+    return res.json(quizzes);
+  } catch {}
+});
+
+app.post("/new-quiz", async (req, res) => {
+  try {
+    let quiz = new Quiz(req.body);
+    quiz.save();
+    res.json({ success: "Success" });
+  } catch {
+    res.json({ error: "Could not add Quiz" });
+  }
+});
+
+app.post("/course/:id", async (req, res) => {
+  let { chapNo, subTopicNo, name } = req.body;
+  let course = await Course.findById(req.params.id);
+  let views = course.chapters[chapNo].subtopics[subTopicNo].views;
+  let alreadyViewed = false;
+  views.forEach((view) => {
+    if (view === name) {
+      alreadyViewed = true;
+    }
+  });
+  if (!alreadyViewed) {
+    course.creds += 5;
+    course.chapters[chapNo].subtopics[subTopicNo].views.push(name);
+  }
+  course.save();
+});
+
 app.post("/new_course/:name", async (req, res) => {
   try {
     let name = req.params.name;
@@ -92,12 +134,19 @@ app.post("/new-subtopic/:id", async (req, res) => {
     let id = req.params.id;
     let { name, chapNo } = req.body;
     let course = await Course.findById(id);
+    course.creds += 50;
     course.chapters[chapNo].subtopics.push({ name: name });
     course.save();
     res.json({ success: "added Subtopic" });
   } catch {
     res.json({ error: "Something went wrong, please try again" });
   }
+});
+
+app.get("/getCourses/:subject", async (req, res) => {
+  let courses = await Course.find({ subject: req.params.subject });
+  console.log(req.params.subject);
+  res.json(courses);
 });
 
 app.post("/subtopic/:id", async (req, res) => {

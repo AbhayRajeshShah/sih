@@ -9,7 +9,7 @@ const EditCourse = () => {
   const [course, setCourse] = useState({});
   const navigate = useNavigate();
   const cookies = new Cookies();
-  const [values, setValues] = useState({ materials: [""] });
+  const [values, setValues] = useState({ material: [""] });
   const [newChap, setNewChap] = useState("");
   const [modal, setModal] = useState(false);
   const [type, setType] = useState(true);
@@ -48,7 +48,7 @@ const EditCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let { video, pdf } = e.target;
-    let materials = values.materials.filter((m) => m !== "");
+    let materials = values.material.filter((m) => m !== "");
     let response = await fetch(`${baseUrl}/subtopic/${course._id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -67,6 +67,12 @@ const EditCourse = () => {
       })
       .then((data) => data);
   };
+
+  useEffect(() => {
+    if (chapNo > -1 && subTopicNo > -1) {
+      setValues({ ...course.chapters[chapNo].subtopics[subTopicNo] });
+    }
+  }, [chapNo, subTopicNo]);
 
   const addNewChap = async () => {
     if (type) {
@@ -151,7 +157,6 @@ const EditCourse = () => {
         ) : (
           ""
         )}
-
         <button
           className="addChapter"
           onClick={() => {
@@ -163,18 +168,32 @@ const EditCourse = () => {
         </button>
       </div>
       {subTopicNo > -1 ? (
-        <form action="" onSubmit={handleSubmit}>
+        <form className="editCourse" action="" onSubmit={handleSubmit}>
           <div className="vertical">
             <p>Video Url</p>
-            <input type="text" name="video" />
+            <input
+              type="text"
+              value={values.video || ""}
+              onChange={(e) => {
+                setValues({ ...values, video: e.target.value });
+              }}
+              name="video"
+            />
           </div>
           <div className="vertical">
             <p>Pdf Url</p>
-            <input type="text" name="pdf" />
+            <input
+              type="text"
+              value={values.pdf || ""}
+              onChange={(e) => {
+                setValues({ ...values, pdf: e.target.value });
+              }}
+              name="pdf"
+            />
           </div>
           <div className="vertical">
             <p>Material</p>
-            {values.materials.map((material, i) => {
+            {values.material.map((material, i) => {
               return (
                 <input
                   type="text"
@@ -191,9 +210,9 @@ const EditCourse = () => {
           <div className="vertical">
             <button
               onClick={() => {
-                let c = [...values.materials];
+                let c = [...values.material];
                 c.push("");
-                setValues({ ...values, materials: c });
+                setValues({ ...values, material: c });
               }}
             >
               +

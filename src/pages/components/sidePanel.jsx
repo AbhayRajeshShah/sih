@@ -5,7 +5,7 @@ function SidePanel() {
   return (
     <div className="side-panel">
       <div className="profile">
-        <img src="profile-picture.jpg" alt="Student Profile Picture" className="profile-picture" />
+        <i className="fa-solid fa-user fa-3x"></i>
         <h2 className="profile-name">John Doe</h2>
       </div>
       <div className="sections">

@@ -30,7 +30,7 @@ function SubjectCard({ subjectName }) {
       <h2 className="subject-name">{subjectName}</h2>
       <div className="dropdown-container">
         {teacherOptions.length > 0 ? (
-          <select
+          <div
             id="teacherSelect"
             className="teacher-dropdown"
             value={selectedTeacher}
@@ -38,19 +38,21 @@ function SubjectCard({ subjectName }) {
             size={3} // Display only 3 options before using a scrollbar
           >
             {teacherOptions.map((teacher, index) => (
-              <option
+              <div
                 key={index}
-                value={teacher.teacher}
+                // value={teacher.teacher}
                 onClick={() => {
                   navigate(`/course/${subjectName}_${teacher.teacher}`);
                 }}
               >
                 {teacher.teacher}
-              </option>
+              </div>
             ))}
-          </select>
+          </div>
         ) : (
-          <div className="teacher-dropdown">No Teachers Available</div>
+          <div className="teacher-dropdown">
+            <div>No Teachers Available</div>
+          </div>
         )}
       </div>
     </div>

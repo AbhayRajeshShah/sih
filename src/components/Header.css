@@ -1,33 +1,32 @@
 .header {
-    background-color: #FF9B50;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 10px;
-    color: white; /* You can change this to black if you want black text */
-    /* z-index: 4;  */
-    position: fixed;
-    top: 0px;
-    
-  }
-  
-  .head {
-    margin: 0px;
-    padding-left: 20px;
-  }
-  
-  .header-content {
-    display: flex;
-    gap: 0px;
-  }
-  
-  .courses,
-  .leaderboard {
-    margin: 0 20px;
-    font-weight: lighter;
-  }
+  background-color: #ff9b50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  color: white; /* You can change this to black if you want black text */
+  /* z-index: 4;  */
+  position: fixed;
+  top: 0px;
+}
 
-  body{
-    font-family: "Poppins";
-    margin: 0;
-  }
+.head {
+  margin: 0px;
+  padding-left: 20px;
+}
+
+.header-content {
+  display: flex;
+  gap: 0px;
+}
+
+.courses,
+.leaderboard {
+  margin: 0 20px;
+  font-weight: lighter;
+}
+
+body {
+  font-family: "Poppins";
+  margin: 0;
+}

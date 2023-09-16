@@ -35,7 +35,12 @@ const SigninDefaultPage = () => {
       cookies.set("user", response, {
         expires: expDate,
       });
-      navigate("/teacher");
+      if (response.role) {
+        navigate("/teacher");
+      } else {
+        navigate("/");
+      }
+
       // Login successful
       // } else {
       //   alert(response.error); // Invalid credentials
@@ -49,7 +54,7 @@ const SigninDefaultPage = () => {
     <>
       <div className="sign login">
         <div className="imgLeft">
-          <img src="images/img_workingtime.svg" alt="" />
+          <img src="images/login.svg" alt="" />
         </div>
         <div className="rightForm">
           <form action="" onSubmit={handleSubmit}>
@@ -78,7 +83,7 @@ const SigninDefaultPage = () => {
                 <p>Password</p>
                 <input
                   required
-                  type="text"
+                  type="password"
                   name="password"
                   value={password}
                   onChange={(e) => {

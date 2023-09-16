@@ -2,85 +2,84 @@
 
 /* Style for the header */
 .header {
-    background-color: #FF9B50;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 10px;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
-  }
-  
-  .head {
-    margin: 0;
-    padding-left: 20px;
-  }
-  
-  /* Style for the main content area */
-  .main-content {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 70px;
-    width: 100%;
-  }
-  
-  /* Style for the side panel */
+  background-color: #e75353;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 4rem);
+  z-index: 2;
+}
+
+.head {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* Style for the main content area */
+.main-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 70px;
+  width: 100%;
+}
+
+/* Style for the side panel */
+.side-panel {
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.2);
+  border-radius: 8px;
+  width: 20%;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  bottom: 0; /* Extend the side panel to the bottom */
+  height: auto; /* Allow the side panel to grow in height */
+  overflow-y: auto;
+  z-index: 1;
+}
+
+/* Style for the subject cards (adjust as needed) */
+.subject-cards {
+  width: 75%;
+  margin-left: 25%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.subject-card {
+  width: calc(33.33% - 20px);
+  margin: 25px;
+  /* Add any other styles for the subject card here */
+}
+
+/* Additional styles for other elements if needed */
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+  /* Adjust styles for screens with a maximum width of 768px */
   .side-panel {
-    font-family: "Poppins", sans-serif;
-    background-color: white;
-    color: black;
-    border: 1px solid #ddd;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(50, 50, 50, 0.2);
-    border-radius: 8px;
-    width: 25%;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    bottom: 0; /* Extend the side panel to the bottom */
-    height: auto; /* Allow the side panel to grow in height */
-    overflow-y: auto;
-    z-index: 1;
+    width: 100%; /* Take the full width on smaller screens */
   }
-  
-  /* Style for the subject cards (adjust as needed) */
+
   .subject-cards {
-    width: 75%;
-    margin-left: 35%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
+    width: 100%;
+    margin-left: 0; /* Remove margin to allow full width */
   }
-  
+
   .subject-card {
-    width: calc(33.33% - 20px);
-    margin: 25px;
-    /* Add any other styles for the subject card here */
+    width: calc(50% - 20px); /* Adjust for smaller screens */
   }
-  
-  /* Additional styles for other elements if needed */
-  
-  /* Media Query for Responsiveness */
-  @media (max-width: 768px) {
-    /* Adjust styles for screens with a maximum width of 768px */
-    .side-panel {
-      width: 100%; /* Take the full width on smaller screens */
-    }
-  
-    .subject-cards {
-      width: 100%;
-      margin-left: 0; /* Remove margin to allow full width */
-    }
-  
-    .subject-card {
-      width: calc(50% - 20px); /* Adjust for smaller screens */
-    }
-  }
-  
+}

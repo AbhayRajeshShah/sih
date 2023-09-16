@@ -68,7 +68,14 @@ const Teacher = () => {
                       >
                         View
                       </button>
-                      <button className="edit">Edit</button>
+                      <button
+                        className="edit"
+                        onClick={() => {
+                          navigate(`/quizzes/${sub}`);
+                        }}
+                      >
+                        Quizzes
+                      </button>
                     </div>
                   </div>
                 );

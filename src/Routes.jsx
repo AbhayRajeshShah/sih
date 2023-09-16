@@ -8,12 +8,11 @@ import SignupDefaultPage from "./pages/auth/Signup";
 import SigninDefaultPage from "./pages/auth/Signin";
 import Teacher from "./pages/roles/Teacher";
 import EditCourse from "./pages/roles/Teacher/editCourse";
-import Sidepanel from "./components/Sidepanel";
-import Header from "./components/Header";
-import Subjects from "./components/Subjects";
-import Teacher from "./components/Teacher";
-import Leaderboard from "./components/leaderboard";
-import Score from "./components/score";
+import Course from "./pages/roles/Student/Course";
+import Quiz from "./pages/actions/Quiz";
+import Rank from "./pages/roles/Teacher/Rank";
+// import Header from "./components/Header";
+// import Teacher from "./components/Teacher";xxxxxx
 
 const ProjectRoutes = () => {
   const subjects = ["DSA", "Java", "ADS", "Web Programming"];
@@ -37,9 +36,12 @@ const ProjectRoutes = () => {
               </>
             }
           />
+          <Route path="/course/:course_details" element={<Course />} />
           <Route path="/signup" element={<SignupDefaultPage />} />
           <Route path="/signin" element={<SigninDefaultPage />} />
           <Route path="/teacher" element={<Teacher />} />
+          <Route exact path="/teacher/leaderboard" element={<Rank />} />
+          <Route exact path="/quizzes/:subject" element={<Quiz />} />
           <Route path="/teacher/:subject" element={<EditCourse />} />
         </Routes>
       </Router>

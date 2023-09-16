@@ -4,8 +4,14 @@
   flex-wrap: wrap;
   margin: 3rem;
   .subjectCard {
-    padding: 1rem 1.5rem;
+    padding: 2rem 1.5rem 1rem;
     border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .head {
+      padding: 0;
+    }
     box-shadow: 0px 0px 20px #c3c3c3;
     .buttons {
       display: flex;
